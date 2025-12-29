@@ -42,7 +42,6 @@ export default function ChatWidget() {
         container.scrollTop = container.scrollHeight;
       }
     };
-
     const frame = requestAnimationFrame(scrollToBottom);
     return () => cancelAnimationFrame(frame);
   }, [messages, loading, open]);
@@ -64,6 +63,10 @@ export default function ChatWidget() {
       setMessages(mapped);
     } catch (err) {
       console.error("Failed to load chat history:", err);
+      setMessages((prev) => [
+        ...prev,
+        { role: "ai", content: "Failed to load chat history." },
+      ]);
     }
   };
 
@@ -82,6 +85,15 @@ export default function ChatWidget() {
         body: JSON.stringify({ message: userMessage, sessionId }),
       });
 
+      // Handle non-200 responses
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        const msg =
+          errData?.error || "Server failed to respond. Please try again.";
+        setMessages((prev) => [...prev, { role: "ai", content: msg }]);
+        return;
+      }
+
       const data = await res.json();
 
       if (data.sessionId && !sessionId) {
@@ -94,7 +106,7 @@ export default function ChatWidget() {
       console.error(err);
       setMessages((prev) => [
         ...prev,
-        { role: "ai", content: "Error talking to server." },
+        { role: "ai", content: "Error talking to server. Please try again." },
       ]);
     } finally {
       setLoading(false);
