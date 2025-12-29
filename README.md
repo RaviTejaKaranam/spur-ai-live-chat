@@ -49,8 +49,8 @@ The AI responds to user messages using OpenAI GPT and persists conversation hist
 
 ### 1. Clone the repository
 
-git clone [https://github.com/RaviTejaKaranam/spur-ai-live-chat](https://github.com/RaviTejaKaranam/spur-ai-live-chat)
-cd spur-ai-live-chat
+- git clone [https://github.com/RaviTejaKaranam/spur-ai-live-chat](https://github.com/RaviTejaKaranam/spur-ai-live-chat)
+- cd spur-ai-live-chat
 
 ### 2. Backend Setup
 
@@ -76,18 +76,16 @@ cd spur-ai-live-chat
 ### 3. Frontend Setup
 
 - cd frontend
-
 - npm install
 
 **Create a .env file:**
 
-VITE_API_URL=http://localhost:4000/chat
+- VITE_API_URL=http://localhost:4000/chat
 
 **Start the frontend:**
 
-npm run dev
-
-Visit http://localhost:5173 to see the app.
+- npm run dev
+- Visit http://localhost:5173 to see the app.
 
 ### Architecture Overview
 
@@ -124,9 +122,6 @@ Visit http://localhost:5173 to see the app.
 ### Trade-offs & If I Had More Time
 
 - SQLite is ephemeral on Render; switching to Postgres would persist data across deploys
-
 - No authentication implemented
-
 - Frontend could include better UX animations, timestamps for messages
-
 - Could add richer AI prompts or FAQ management stored in DB
