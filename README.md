@@ -55,12 +55,15 @@ cd spur-ai-live-chat
 ### 2. Backend Setup
 
 cd backend
+
 npm install
 
 **Create a .env file:**
 
 DATABASE_URL=file:./dev.db
+
 OPENAI_API_KEY=your_openai_api_key_here
+
 PORT=4000
 
 
@@ -76,12 +79,15 @@ npm run dev
 ### 3. Frontend Setup
 
 cd frontend
+
 npm install
 
 **Create a .env file:**
+
 VITE_API_URL=http://localhost:4000/chat
 
 **Start the frontend:**
+
 npm run dev
 
 Visit http://localhost:5173 to see the app.
@@ -90,24 +96,27 @@ Visit http://localhost:5173 to see the app.
 
 **Backend**
 
-app.ts → Express app setup
-server.ts → Entry point
-controllers/chat.controller.ts → Handles API requests
-services/chat.service.ts → Business logic, handles messages, AI calls
-services/llm.service.ts → Wraps OpenAI API call
-repositories/conversation.repository.ts → Handles conversation persistence
-repositories/message.repository.ts → Handles message persistence
+-app.ts → Express app setup
+-server.ts → Entry point
+-controllers/chat.controller.ts → Handles API requests
+-services/chat.service.ts → Business logic, handles messages, AI calls
+-services/llm.service.ts → Wraps OpenAI API call
+-repositories/conversation.repository.ts → Handles conversation persistence
+-repositories/message.repository.ts → Handles message persistence
 
 **Frontend**
 
 components/ChatWidget.tsx → Main chat widget UI with auto-scroll, input, messages
+
 ChatWidget.css → Styling for chat widget
 
 
 ### LLM Integration Notes
 
 Provider: Groq
+
 Model: openai/gpt-oss-20b
+
 System Prompt: "You are a helpful support agent for a small e-commerce store.
         Answer clearly and concisely.
         FAQs:
@@ -121,6 +130,9 @@ System Prompt: "You are a helpful support agent for a small e-commerce store.
 ### Trade-offs & If I Had More Time
 
 SQLite is ephemeral on Render; switching to Postgres would persist data across deploys
+
 No authentication implemented
+
 Frontend could include better UX animations, timestamps for messages
+
 Could add richer AI prompts or FAQ management stored in DB
