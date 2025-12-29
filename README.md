@@ -29,7 +29,7 @@ The AI responds to user messages using OpenAI GPT and persists conversation hist
 
 ![Chat Messages](./screenshots/messages.png)
 
-**Server Failure Handling**
+**Server Failure Testing**
 
 ![Server Failure](./screenshots/server_failure.png)
 
@@ -54,33 +54,30 @@ cd spur-ai-live-chat
 
 ### 2. Backend Setup
 
-cd backend
-
-npm install
+- cd backend
+- npm install
 
 **Create a .env file:**
 
-DATABASE_URL=file:./dev.db
-
-OPENAI_API_KEY=your_openai_api_key_here
-
-PORT=4000
+- DATABASE_URL=file:./dev.db
+- OPENAI_API_KEY=your_openai_api_key_here
+- PORT=4000
 
 
 **Run database migrations:**
 
-npx prisma migrate dev --name init
+- npx prisma migrate dev --name init
 
 
 **Start the backend server:**
 
-npm run dev
+- npm run dev
 
 ### 3. Frontend Setup
 
-cd frontend
+- cd frontend
 
-npm install
+- npm install
 
 **Create a .env file:**
 
@@ -96,28 +93,25 @@ Visit http://localhost:5173 to see the app.
 
 **Backend**
 
--app.ts → Express app setup
--server.ts → Entry point
--controllers/chat.controller.ts → Handles API requests
--services/chat.service.ts → Business logic, handles messages, AI calls
--services/llm.service.ts → Wraps OpenAI API call
--repositories/conversation.repository.ts → Handles conversation persistence
--repositories/message.repository.ts → Handles message persistence
+- app.ts → Express app setup
+- server.ts → Entry point
+- controllers/chat.controller.ts → Handles API requests
+- services/chat.service.ts → Business logic, handles messages, AI calls
+- services/llm.service.ts → Wraps OpenAI API call
+- repositories/conversation.repository.ts → Handles conversation persistence
+- repositories/message.repository.ts → Handles message persistence
 
 **Frontend**
 
-components/ChatWidget.tsx → Main chat widget UI with auto-scroll, input, messages
-
-ChatWidget.css → Styling for chat widget
+- components/ChatWidget.tsx → Main chat widget UI with auto-scroll, input, messages
+- ChatWidget.css → Styling for chat widget
 
 
 ### LLM Integration Notes
 
-Provider: Groq
-
-Model: openai/gpt-oss-20b
-
-System Prompt: "You are a helpful support agent for a small e-commerce store.
+- Provider: Groq
+- Model: openai/gpt-oss-20b
+- System Prompt: "You are a helpful support agent for a small e-commerce store.
         Answer clearly and concisely.
         FAQs:
         - Shipping: 2-5 business days
@@ -129,10 +123,10 @@ System Prompt: "You are a helpful support agent for a small e-commerce store.
 
 ### Trade-offs & If I Had More Time
 
-SQLite is ephemeral on Render; switching to Postgres would persist data across deploys
+- SQLite is ephemeral on Render; switching to Postgres would persist data across deploys
 
-No authentication implemented
+- No authentication implemented
 
-Frontend could include better UX animations, timestamps for messages
+- Frontend could include better UX animations, timestamps for messages
 
-Could add richer AI prompts or FAQ management stored in DB
+- Could add richer AI prompts or FAQ management stored in DB
